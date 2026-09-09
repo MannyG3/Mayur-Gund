@@ -1,22 +1,35 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowDownRight, ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const navItems = ["About", "Experience", "Projects", "Skills", "Contact"];
 
 const projects = [
-  { number: "01", title: "Learning machines", tag: "AI / ML", copy: "Making intelligent systems feel approachable, useful and human." },
-  { number: "02", title: "Robotics studio", tag: "HARDWARE", copy: "A hands-on lab where students turn curious questions into working prototypes." },
-  { number: "03", title: "Open classrooms", tag: "EDUCATION", copy: "Designing pathways for more people to enter, explore and shape technology." },
+  { number: "01", title: "Reportly", tag: "FULL-STACK", copy: "A reporting workflow designed to make information clearer and easier to act on.", url: "https://github.com/MannyG3/Reportly" },
+  { number: "02", title: "Space Traffic Dashboard", tag: "REACT / NODE", copy: "Real-time satellite monitoring and collision detection with WebSockets.", url: "https://github.com/MannyG3/space-traffic-dashboard" },
+  { number: "03", title: "Crop recommendation", tag: "PYTHON / ML", copy: "A machine learning project for practical crop and fertilizer guidance.", url: "https://github.com/MannyG3/Crop-and-fertilizer-recommendation" },
+  { number: "04", title: "TrekMates", tag: "TYPESCRIPT", copy: "A social planning experience for people who like to explore together.", url: "https://github.com/MannyG3/TrekMates" },
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => typeof window !== "undefined" && window.localStorage.getItem("mayur-theme") === "dark");
   const { scrollYProgress } = useScroll();
   const skyY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const foregroundY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? "dark" : "light";
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    const nextTheme = darkMode ? "light" : "dark";
+    setDarkMode(!darkMode);
+    document.documentElement.dataset.theme = nextTheme;
+    window.localStorage.setItem("mayur-theme", nextTheme);
+  };
 
   return (
     <main>
@@ -35,6 +48,9 @@ export default function Home() {
           </button>
           <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
             {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item} onClick={() => setMenuOpen(false)}>{item}</a>)}
+            <button className="theme-toggle" aria-label={darkMode ? "Use light theme" : "Use dark theme"} onClick={toggleTheme}>
+              {darkMode ? <Sun size={15} strokeWidth={1.5} /> : <Moon size={15} strokeWidth={1.5} />} <span>{darkMode ? "Light" : "Dark"}</span>
+            </button>
           </div>
         </nav>
 
@@ -78,14 +94,14 @@ export default function Home() {
 
       <section className="projects-section section-shell" id="projects">
         <div className="section-head"><p className="section-kicker">03 / SELECTED WORK</p><p className="section-note">A few things I&apos;ve helped bring to life.</p></div>
-        <div className="project-list">{projects.map((project) => <a className="project-row" href="#contact" key={project.number}><span className="project-number">{project.number}</span><div><p>{project.tag}</p><h3>{project.title}</h3><span>{project.copy}</span></div><ArrowUpRight className="project-arrow" size={22} strokeWidth={1.3} /></a>)}</div>
+        <div className="project-list">{projects.map((project) => <a className="project-row" href={project.url} target="_blank" rel="noreferrer" key={project.number}><span className="project-number">{project.number}</span><div><p>{project.tag}</p><h3>{project.title}</h3><span>{project.copy}</span></div><ArrowUpRight className="project-arrow" size={22} strokeWidth={1.3} /></a>)}</div>
       </section>
 
-      <section className="skills-section" id="skills"><div className="section-shell skills-layout"><p className="section-kicker">04 / TOOLKIT</p><div><h2>Things I like<br /><i>to work with.</i></h2><div className="skill-cloud"><span>Python</span><span>Artificial intelligence</span><span>Machine learning</span><span>C / C++</span><span>JavaScript</span><span>SQL</span><span>Cloud</span><span>Robotics</span><span>Mentoring</span></div></div></div></section>
+      <section className="skills-section" id="skills"><div className="section-shell skills-layout"><p className="section-kicker">04 / TOOLKIT</p><div><h2>Things I like<br /><i>to work with.</i></h2><div className="skill-cloud"><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>C / C++</span><span>SQL</span><span>REST APIs</span><span>Git & GitHub</span><span>Data Structures</span><span>Algorithms</span><span>Artificial intelligence</span><span>Machine learning</span><span>Cloud</span><span>Robotics</span><span>Mentoring</span></div></div></div></section>
 
       <section className="impact-section section-shell"><p className="section-kicker">05 / IMPACT</p><div className="impact-grid"><div><strong>500<span>+</span></strong><p>students mentored</p></div><div><strong>40<span>+</span></strong><p>workshops conducted</p></div><div><strong>25<span>+</span></strong><p>projects guided</p></div><div><strong>∞</strong><p>questions welcomed</p></div></div></section>
 
-      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><p className="section-kicker">06 / CONTACT</p><h2>Let&apos;s build something<br /><i>meaningful.</i></h2><a className="contact-link" href="mailto:hello@mayurgund.com">hello@mayurgund.com <ArrowUpRight size={21} /></a><div className="contact-footer"><span>mayur.</span><span>Based in India · Working everywhere</span><a href="#top">Back to top ↑</a></div></div></section>
+      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><p className="section-kicker">06 / CONTACT</p><h2>Let&apos;s build something<br /><i>meaningful.</i></h2><a className="contact-link" href="mailto:mayurgund3333@gmail.com">mayurgund3333@gmail.com <ArrowUpRight size={21} /></a><div className="contact-footer"><span>mayur.</span><span>Based in India · Working everywhere</span><a href="#top">Back to top ↑</a></div></div></section>
     </main>
   );
 }
