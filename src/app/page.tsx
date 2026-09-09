@@ -15,7 +15,7 @@ const projects = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => typeof window !== "undefined" && window.localStorage.getItem("mayur-theme") === "dark");
+  const [darkMode, setDarkMode] = useState(() => typeof window === "undefined" || window.localStorage.getItem("mayur-theme") !== "light");
   const { scrollYProgress } = useScroll();
   const skyY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const foregroundY = useTransform(scrollYProgress, [0, 1], [0, 140]);
@@ -56,13 +56,12 @@ export default function Home() {
 
         <div className="hero-copy">
           <motion.p className="eyebrow" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
-            MAYUR MAHADEV GUND <span> / </span> Lecturer · AI/ML · Technology · Innovation
+            MAYUR MAHADEV GUND
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.48, duration: 0.9, ease: "easeOut" }}>
             Teaching technology.<br /><em>Building the future.</em>
           </motion.h1>
           <motion.div className="hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.95, duration: 0.8 }}>
-            <p>I teach, mentor, build and create opportunities at the intersection of education and technology.</p>
             <div className="hero-actions">
               <a className="button button-light" href="#projects">Explore my work <ArrowUpRight size={16} /></a>
               <a className="button button-quiet" href="#contact">Let&apos;s connect <ArrowUpRight size={16} /></a>
