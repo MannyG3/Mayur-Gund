@@ -1,69 +1,91 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { useState } from "react";
+
+const navItems = ["About", "Experience", "Projects", "Skills", "Contact"];
+
+const projects = [
+  { number: "01", title: "Learning machines", tag: "AI / ML", copy: "Making intelligent systems feel approachable, useful and human." },
+  { number: "02", title: "Robotics studio", tag: "HARDWARE", copy: "A hands-on lab where students turn curious questions into working prototypes." },
+  { number: "03", title: "Open classrooms", tag: "EDUCATION", copy: "Designing pathways for more people to enter, explore and shape technology." },
+];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const skyY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <section className="hero" id="top">
+        <motion.div className="hero-video-wrap" style={{ y: skyY }}>
+          <video className="hero-video" autoPlay muted loop playsInline poster="/reference-frame.jpg" aria-hidden="true">
+            <source src="/reference.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+        <div className="hero-shade" />
+        <motion.div className="hero-foreground" style={{ y: foregroundY }} />
+        <nav className="site-nav" aria-label="Main navigation">
+          <a className="wordmark" href="#top">mayur<span>.</span></a>
+          <button className="menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+          </button>
+          <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
+            {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item} onClick={() => setMenuOpen(false)}>{item}</a>)}
+          </div>
+        </nav>
+
+        <div className="hero-copy">
+          <motion.p className="eyebrow" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
+            MAYUR MAHADEV GUND <span> / </span> Lecturer · AI/ML · Technology · Innovation
+          </motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.48, duration: 0.9, ease: "easeOut" }}>
+            Teaching technology.<br /><em>Building the future.</em>
+          </motion.h1>
+          <motion.div className="hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.95, duration: 0.8 }}>
+            <p>I teach, mentor, build and create opportunities at the intersection of education and technology.</p>
+            <div className="hero-actions">
+              <a className="button button-light" href="#projects">Explore my work <ArrowUpRight size={16} /></a>
+              <a className="button button-quiet" href="#contact">Let&apos;s connect <ArrowUpRight size={16} /></a>
+            </div>
+          </motion.div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="scroll-mark"><span>Scroll to explore</span><ArrowDownRight size={17} /></div>
+        <div className="hero-index">01 <span>/</span> 06</div>
+      </section>
+
+      <section className="intro-section section-shell" id="about">
+        <p className="section-kicker">01 / WHO I AM</p>
+        <div className="intro-grid">
+          <h2>Technology is most powerful when it <i>opens a door.</i></h2>
+          <div className="intro-copy"><p>My work lives where teaching meets making. I help people understand complex ideas, build confidence with technology and find the spark that keeps them learning.</p><a className="text-link" href="#experience">More about me <ArrowUpRight size={15} /></a></div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="dark-section" id="experience">
+        <div className="section-shell experience-layout">
+          <p className="section-kicker light-kicker">02 / EXPERIENCE</p>
+          <div className="experience-list">
+            <div className="experience-row"><span>2021 — now</span><div><h3>Lecturer & mentor</h3><p>Teaching computer science, AI/ML and emerging technology through projects that stick.</p></div><span className="row-label">EDUCATION</span></div>
+            <div className="experience-row"><span>2019 — 21</span><div><h3>Technology facilitator</h3><p>Guiding student teams from first sketch to tested prototype and public demo.</p></div><span className="row-label">INNOVATION</span></div>
+            <div className="experience-row"><span>Always</span><div><h3>Curious collaborator</h3><p>Connecting classrooms, communities and industry around meaningful problems.</p></div><span className="row-label">PEOPLE</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="projects-section section-shell" id="projects">
+        <div className="section-head"><p className="section-kicker">03 / SELECTED WORK</p><p className="section-note">A few things I&apos;ve helped bring to life.</p></div>
+        <div className="project-list">{projects.map((project) => <a className="project-row" href="#contact" key={project.number}><span className="project-number">{project.number}</span><div><p>{project.tag}</p><h3>{project.title}</h3><span>{project.copy}</span></div><ArrowUpRight className="project-arrow" size={22} strokeWidth={1.3} /></a>)}</div>
+      </section>
+
+      <section className="skills-section" id="skills"><div className="section-shell skills-layout"><p className="section-kicker">04 / TOOLKIT</p><div><h2>Things I like<br /><i>to work with.</i></h2><div className="skill-cloud"><span>Python</span><span>Artificial intelligence</span><span>Machine learning</span><span>C / C++</span><span>JavaScript</span><span>SQL</span><span>Cloud</span><span>Robotics</span><span>Mentoring</span></div></div></div></section>
+
+      <section className="impact-section section-shell"><p className="section-kicker">05 / IMPACT</p><div className="impact-grid"><div><strong>500<span>+</span></strong><p>students mentored</p></div><div><strong>40<span>+</span></strong><p>workshops conducted</p></div><div><strong>25<span>+</span></strong><p>projects guided</p></div><div><strong>∞</strong><p>questions welcomed</p></div></div></section>
+
+      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><p className="section-kicker">06 / CONTACT</p><h2>Let&apos;s build something<br /><i>meaningful.</i></h2><a className="contact-link" href="mailto:hello@mayurgund.com">hello@mayurgund.com <ArrowUpRight size={21} /></a><div className="contact-footer"><span>mayur.</span><span>Based in India · Working everywhere</span><a href="#top">Back to top ↑</a></div></div></section>
+    </main>
   );
 }
