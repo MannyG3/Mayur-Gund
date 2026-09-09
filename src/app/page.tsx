@@ -35,7 +35,7 @@ export default function Home() {
     <main>
       <section className="hero" id="top">
         <motion.div className="hero-video-wrap" style={{ y: skyY }}>
-          <video className="hero-video" autoPlay muted loop playsInline poster="/reference-frame.jpg" aria-hidden="true">
+          <video className="hero-video" autoPlay muted loop playsInline aria-hidden="true">
             <source src="/reference.mp4" type="video/mp4" />
           </video>
         </motion.div>
