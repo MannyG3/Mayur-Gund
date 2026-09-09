@@ -84,7 +84,7 @@ export default function Home() {
         <div className="section-shell experience-layout">
           <p className="section-kicker light-kicker">02 / EXPERIENCE</p>
           <div className="experience-list">
-            <div className="experience-row"><span>Jan 2024 — Present</span><div><h3>Python / Programming Trainer & Training & Placement Officer</h3><p>K. E. Society&apos;s Rajarambapu Institute of Technology (Polytechnic), Pune</p></div><span className="row-label">EDUCATION</span></div>
+            <div className="experience-row"><span>Jan 2024 — Present</span><div><h3>Python / Programming Trainer & Training & Placement Officer</h3><p>Turning curious learners into confident builders through code, problem-solving and opportunity.</p><span className="experience-place">K. E. Society&apos;s Rajarambapu Institute of Technology (Polytechnic), Pune</span></div><span className="row-label">EDUCATION</span></div>
           </div>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function Home() {
 
       <section className="impact-section section-shell"><p className="section-kicker">05 / IMPACT</p><div className="impact-grid"><div><strong>500<span>+</span></strong><p>students mentored</p></div><div><strong>40<span>+</span></strong><p>workshops conducted</p></div><div><strong>25<span>+</span></strong><p>projects guided</p></div><div><strong>∞</strong><p>questions welcomed</p></div></div></section>
 
-      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><p className="section-kicker">06 / CONTACT</p><h2>Let&apos;s build something<br /><i>meaningful.</i></h2><a className="contact-link" href="mailto:mayurgund3333@gmail.com">mayurgund3333@gmail.com <ArrowUpRight size={21} /></a><div className="contact-footer"><span>mayur.</span><span>Based in India · Working everywhere</span><a href="#top">Back to top ↑</a></div></div></section>
+      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><p className="section-kicker">06 / CONTACT</p><h2>Let&apos;s build something<br /><i>meaningful.</i></h2><a className="contact-link" href="mailto:mayurgund3333@gmail.com">mayurgund3333@gmail.com <ArrowUpRight size={21} /></a><div className="contact-footer"><span>mayur.</span><div className="social-links"><a href="https://github.com/MannyG3" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/mayurgund99/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://leetcode.com/u/mayurgund3333/" target="_blank" rel="noreferrer">LeetCode</a></div><a href="#top">Back to top ↑</a></div></div></section>
     </main>
   );
 }
