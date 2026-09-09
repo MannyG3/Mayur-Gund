@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navItems = ["About", "Experience", "Projects", "Skills", "Contact"];
 
@@ -15,21 +15,9 @@ const projects = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => typeof window === "undefined" || window.localStorage.getItem("mayur-theme") !== "light");
   const { scrollYProgress } = useScroll();
   const skyY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const foregroundY = useTransform(scrollYProgress, [0, 1], [0, 140]);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = darkMode ? "dark" : "light";
-  }, [darkMode]);
-
-  const toggleTheme = () => {
-    const nextTheme = darkMode ? "light" : "dark";
-    setDarkMode(!darkMode);
-    document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem("mayur-theme", nextTheme);
-  };
 
   return (
     <main>
@@ -48,9 +36,6 @@ export default function Home() {
           </button>
           <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
             {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item} onClick={() => setMenuOpen(false)}>{item}</a>)}
-            <button className="theme-toggle" aria-label={darkMode ? "Use light theme" : "Use dark theme"} onClick={toggleTheme}>
-              {darkMode ? <Sun size={15} strokeWidth={1.5} /> : <Moon size={15} strokeWidth={1.5} />} <span>{darkMode ? "Light" : "Dark"}</span>
-            </button>
           </div>
         </nav>
 
