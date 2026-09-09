@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
 @import "tailwindcss";
 
-:root { --ink: #101411; --text: #eeeade; --paper: #171b18; --lime: #d7e5a1; --muted: #9b9d91; --rule: rgba(238,234,222,.2); --soft: #b0b3a8; --skills: #3c4938; }
+:root { --ink: #1c211d; --text: #1c211d; --paper: #e9e5d9; --lime: #d7e5a1; --muted: #70766a; --rule: rgba(28,33,29,.18); --soft: #596057; --skills: #c2cda1; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--text); font-family: 'DM Sans', sans-serif; transition: background .35s, color .35s; }
