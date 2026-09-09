@@ -84,9 +84,7 @@ export default function Home() {
         <div className="section-shell experience-layout">
           <p className="section-kicker light-kicker">02 / EXPERIENCE</p>
           <div className="experience-list">
-            <div className="experience-row"><span>2021 — now</span><div><h3>Lecturer & mentor</h3><p>Teaching computer science, AI/ML and emerging technology through projects that stick.</p></div><span className="row-label">EDUCATION</span></div>
-            <div className="experience-row"><span>2019 — 21</span><div><h3>Technology facilitator</h3><p>Guiding student teams from first sketch to tested prototype and public demo.</p></div><span className="row-label">INNOVATION</span></div>
-            <div className="experience-row"><span>Always</span><div><h3>Curious collaborator</h3><p>Connecting classrooms, communities and industry around meaningful problems.</p></div><span className="row-label">PEOPLE</span></div>
+            <div className="experience-row"><span>Jan 2024 — Present</span><div><h3>Python / Programming Trainer & Training & Placement Officer</h3><p>K. E. Society&apos;s Rajarambapu Institute of Technology (Polytechnic), Pune</p></div><span className="row-label">EDUCATION</span></div>
           </div>
         </div>
       </section>
